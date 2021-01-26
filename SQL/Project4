@@ -1,0 +1,27 @@
+CREATE TABLE video(
+VideoID serial PRIMARY KEY,
+Title VARCHAR(300) NOT NULL,
+Length INTEGER, 
+URL VARCHAR (500) NOT NULL);
+--
+CREATE TABLE reviewers(
+VideoID serial PRIMARY KEY,
+username VARCHAR(100) UNIQUE NOT NULL,
+rating INTEGER check (rating between 0 and 10),
+review VARCHAR (500));
+--
+INSERT INTO video (Title, Length, URL)
+VALUES
+('4 Easy Fro Hairstyle', '10','https://www.youtube.com/watch?v=JJ4WP3kr1Jc'),
+('4 Easy Ways to Tie a Headscarf','4','https://www.youtube.com/watch?v=7_PWJP8NyGo'),
+('Top 10 Hair Care Tips', '14', 'https://www.youtube.com/watch?v=9f6D1j91VJ0');
+--
+INSERT INTO reviewers (username, rating, review)
+VALUES
+('Rockygyal_3', '10', 'Great natural hair content!'),
+('Ravenlol', '8', 'Loved the different styles'),
+('Teni98', '7', 'Video was too long but informative');
+--
+SELECT * from reviewers
+INNER JOIN video
+ON reviewers.VideoID=video.VideoID
